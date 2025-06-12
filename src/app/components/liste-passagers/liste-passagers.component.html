@@ -1,3 +1,10 @@
-<!-- Affichage de la liste des passagers -->
+<mat-slide-toggle [(ngModel)]="afficherPhotos">
+  Afficher les photos
+</mat-slide-toggle>
 
-
+<div *ngFor="let passager of passagers">
+  <app-passager
+    [passager]="passager"
+    [afficherPhoto]="afficherPhotos">
+  </app-passager>
+</div>

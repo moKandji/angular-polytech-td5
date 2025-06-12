@@ -1,0 +1,30 @@
+.passager-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.passager-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.passager-nom {
+  width: 150px;
+  font-weight: 500;
+}
+
+.passager-classe {
+  width: 100px;
+  text-transform: uppercase;
+}
+
+.passager-bagages {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

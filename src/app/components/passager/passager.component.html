@@ -1,1 +1,17 @@
-<!-- Affichage d'un passager -->
+<div class="passager-card">
+  <img *ngIf="afficherPhoto"
+       [src]="passager.image"
+       alt="Photo {{ passager.nom }}"
+       class="passager-photo">
+       <span class="passager-nom" [matTooltip]="passager.email">
+        {{ passager.nom }}
+      </span>
+  <span class="passager-classe" [appClasseVolColor]="passager.classeVol">
+    {{ passager.classeVol }}
+  </span>
+  <span class="passager-bagages"
+        [classeVol]="passager.classeVol"
+        [nbBagages]="passager.nbBagagesSoute">
+    <mat-icon>work</mat-icon> x{{ passager.nbBagagesSoute }}
+  </span>
+</div>

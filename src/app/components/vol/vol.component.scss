@@ -1,0 +1,14 @@
+.compagnie-logo {
+  height: 30px;
+  margin: 0 10px;
+}
+
+:host {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}

@@ -1,4 +1,4 @@
-import { Component, LOCALE_ID, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, LOCALE_ID, Output, ViewEncapsulation } from '@angular/core';
 import { MAT_DATE_RANGE_SELECTION_STRATEGY } from '@angular/material/datepicker';
 import { AEROPORTS } from './../../constants/aeroport.constant';
 import {MatInputModule} from '@angular/material/input';
@@ -12,14 +12,14 @@ import {MatCommonModule} from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-filtres',
     templateUrl: './filtres.component.html',
     styleUrls: ['./filtres.component.scss'],
     imports: [MatIconModule, MatButtonModule, MatInputModule,
-        MatFormFieldModule, MatSelectModule, MatDatepickerModule, MatCommonModule, CommonModule],
+        MatFormFieldModule, MatSelectModule, MatDatepickerModule, MatCommonModule, CommonModule, FormsModule],
     providers: [
         provideNativeDateAdapter(),
         { provide: LOCALE_ID, useValue: 'fr' },
@@ -32,11 +32,21 @@ import { MatIconModule } from '@angular/material/icon';
     encapsulation: ViewEncapsulation.None
 })
 export class FiltresComponent {
-
-  /**
-   * La liste des aéroports disponibles est une constante,
-   * on n'utilise que les principaux aéroports français pour l'instant
-   */
   aeroports: IAeroport[] = AEROPORTS;
-  
+
+  selectedAeroport!: IAeroport;
+  startDate!: Date;
+  endDate!: Date;
+
+  @Output() filtresAppliques = new EventEmitter<{ aeroport: IAeroport, debut: Date, fin: Date }>();
+
+  onAppliquer() {
+    if (this.selectedAeroport && this.startDate && this.endDate) {
+      this.filtresAppliques.emit({
+        aeroport: this.selectedAeroport,
+        debut: this.startDate,
+        fin: this.endDate
+      });
+    }
+  }
 }

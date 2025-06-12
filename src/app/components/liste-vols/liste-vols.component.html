@@ -1,1 +1,19 @@
-<!-- Affichage de la liste des vols -->
+<div *ngIf="vols.length === 0">
+  Aucun vol trouvé pour les critères sélectionnés.
+</div>
+
+<div *ngFor="let vol of vols"
+     (click)="selectionnerVol(vol)"
+     class="vol-card"
+     [class.selected]="vol === selectedVol">
+     
+  <mat-icon>flight_takeoff</mat-icon>
+  <img [src]="compagnieLogos[vol.compagnie]" alt="{{ vol.compagnie }}" class="compagnie-logo">
+
+  <p><strong>ICAO :</strong> {{ vol.icao }}</p>
+  <p><strong>Matricule :</strong> {{ vol.matricule }}</p>
+  <p><strong>Compagnie :</strong> {{ vol.compagnie }}</p>
+  <p><strong>Aéroport départ :</strong> {{ vol.aeroportDepart }}</p>
+  <mat-icon>arrow_right_alt</mat-icon>
+  <p><strong>Aéroport destination :</strong> {{ vol.aeroportArrivee || 'Inconnu' }}</p>
+</div>
